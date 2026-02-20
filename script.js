@@ -186,12 +186,13 @@ function getFlip(i) {
 }
 
 const AUDIO_PROFILES = {
-    neutral: { master: 0.006, subFreq: 33, bodyFreq: 58, lowpass: 130, bandpass: 66, noise: 0.0012, tremoloHz: 1.8, tremoloDepth: 0.006, drive: 0.9, detune: 1.8, shimmerHz: 0.05, lfoDepth: 10, airFreq: 96, airGain: 0.004, reverbWet: 0.08, reverbDry: 0.45, panHz: 0.02, panDepth: 0.04, impactGain: 0.03 },
-    red: { master: 0.072, subFreq: 41, bodyFreq: 84, lowpass: 290, bandpass: 112, noise: 0.014, tremoloHz: 4.9, tremoloDepth: 0.036, drive: 1.48, detune: 7.2, shimmerHz: 0.2, lfoDepth: 52, airFreq: 168, airGain: 0.08, reverbWet: 0.3, reverbDry: 0.74, panHz: 0.07, panDepth: 0.16, impactGain: 0.2 },
-    void: { master: 0.08, subFreq: 24, bodyFreq: 44, lowpass: 170, bandpass: 62, noise: 0.04, tremoloHz: 1.15, tremoloDepth: 0.042, drive: 1.86, detune: 20, shimmerHz: 0.035, lfoDepth: 72, airFreq: 68, airGain: 0.074, reverbWet: 0.54, reverbDry: 0.58, panHz: 0.038, panDepth: 0.17, impactGain: 0.22 },
-    purple: { master: 0.09, subFreq: 46, bodyFreq: 97, lowpass: 400, bandpass: 150, noise: 0.018, tremoloHz: 6.4, tremoloDepth: 0.045, drive: 1.7, detune: 14.5, shimmerHz: 0.26, lfoDepth: 64, airFreq: 198, airGain: 0.11, reverbWet: 0.38, reverbDry: 0.68, panHz: 0.11, panDepth: 0.22, impactGain: 0.23 },
-    shrine: { master: 0.084, subFreq: 38, bodyFreq: 73, lowpass: 320, bandpass: 132, noise: 0.013, tremoloHz: 3.2, tremoloDepth: 0.032, drive: 1.58, detune: 5.8, shimmerHz: 0.13, lfoDepth: 56, airFreq: 152, airGain: 0.09, reverbWet: 0.34, reverbDry: 0.72, panHz: 0.065, panDepth: 0.18, impactGain: 0.19 },
-    flip: { master: 0.096, subFreq: 36, bodyFreq: 90, lowpass: 360, bandpass: 162, noise: 0.022, tremoloHz: 8.6, tremoloDepth: 0.056, drive: 1.82, detune: 16, shimmerHz: 0.33, lfoDepth: 68, airFreq: 208, airGain: 0.12, reverbWet: 0.32, reverbDry: 0.7, panHz: 0.14, panDepth: 0.24, impactGain: 0.24 }
+    neutral: { master: 0.006, subFreq: 33, bodyFreq: 58, subGain: 0.26, bodyGain: 0.16, lowpass: 130, bandpass: 66, noise: 0.0012, tremoloHz: 1.8, tremoloDepth: 0.006, drive: 0.9, detune: 1.8, shimmerHz: 0.05, lfoDepth: 10, airFreq: 96, airGain: 0.004, reverbWet: 0.08, reverbDry: 0.45, panHz: 0.02, panDepth: 0.04, impactGain: 0.03 },
+    red: { master: 0.072, subFreq: 41, bodyFreq: 84, subGain: 0.34, bodyGain: 0.24, lowpass: 290, bandpass: 112, noise: 0.014, tremoloHz: 4.9, tremoloDepth: 0.036, drive: 1.48, detune: 7.2, shimmerHz: 0.2, lfoDepth: 52, airFreq: 168, airGain: 0.08, reverbWet: 0.3, reverbDry: 0.74, panHz: 0.07, panDepth: 0.16, impactGain: 0.2 },
+    // Infinite Void v3: colossal, full-spectrum "overwhelming pressure" mix.
+    void: { master: 0.108, subFreq: 22, bodyFreq: 61, subGain: 0.64, bodyGain: 0.46, lowpass: 260, bandpass: 102, noise: 0.052, tremoloHz: 1.15, tremoloDepth: 0.053, drive: 2.38, detune: 23, shimmerHz: 0.075, lfoDepth: 186, airFreq: 214, airGain: 0.162, reverbWet: 0.72, reverbDry: 0.64, panHz: 0.058, panDepth: 0.34, impactGain: 0.34 },
+    purple: { master: 0.09, subFreq: 46, bodyFreq: 97, subGain: 0.34, bodyGain: 0.25, lowpass: 400, bandpass: 150, noise: 0.018, tremoloHz: 6.4, tremoloDepth: 0.045, drive: 1.7, detune: 14.5, shimmerHz: 0.26, lfoDepth: 64, airFreq: 198, airGain: 0.11, reverbWet: 0.38, reverbDry: 0.68, panHz: 0.11, panDepth: 0.22, impactGain: 0.23 },
+    shrine: { master: 0.084, subFreq: 38, bodyFreq: 73, subGain: 0.32, bodyGain: 0.23, lowpass: 320, bandpass: 132, noise: 0.013, tremoloHz: 3.2, tremoloDepth: 0.032, drive: 1.58, detune: 5.8, shimmerHz: 0.13, lfoDepth: 56, airFreq: 152, airGain: 0.09, reverbWet: 0.34, reverbDry: 0.72, panHz: 0.065, panDepth: 0.18, impactGain: 0.19 },
+    flip: { master: 0.096, subFreq: 36, bodyFreq: 90, subGain: 0.35, bodyGain: 0.26, lowpass: 360, bandpass: 162, noise: 0.022, tremoloHz: 8.6, tremoloDepth: 0.056, drive: 1.82, detune: 16, shimmerHz: 0.33, lfoDepth: 68, airFreq: 208, airGain: 0.12, reverbWet: 0.32, reverbDry: 0.7, panHz: 0.14, panDepth: 0.24, impactGain: 0.24 }
 };
 
 function createDriveCurve(amount = 35) {
@@ -240,10 +241,12 @@ class ProceduralAudioEngine {
         this.coreGain = null;
         this.subGain = null;
         this.bodyGain = null;
+        this.voidRumbleGain = null;
         this.airGain = null;
         this.noiseGain = null;
         this.bodyOscA = null;
         this.bodyOscB = null;
+        this.voidRumbleOsc = null;
         this.subOsc = null;
         this.airOsc = null;
         this.noiseSource = null;
@@ -252,6 +255,7 @@ class ProceduralAudioEngine {
         this.driveGain = null;
         this.shaper = null;
         this.compressor = null;
+        this.limiter = null;
         this.stereoPanner = null;
         this.reverb = null;
         this.reverbWetGain = null;
@@ -298,6 +302,9 @@ class ProceduralAudioEngine {
         this.bodyGain = ctx.createGain();
         this.bodyGain.gain.value = 0.19;
 
+        this.voidRumbleGain = ctx.createGain();
+        this.voidRumbleGain.gain.value = 0.0001;
+
         this.airGain = ctx.createGain();
         this.airGain.gain.value = 0.03;
 
@@ -322,11 +329,18 @@ class ProceduralAudioEngine {
         this.bandpassFilter.Q.value = 0.65;
 
         this.compressor = ctx.createDynamicsCompressor();
-        this.compressor.threshold.value = -25;
-        this.compressor.knee.value = 30;
-        this.compressor.ratio.value = 9;
-        this.compressor.attack.value = 0.008;
-        this.compressor.release.value = 0.24;
+        this.compressor.threshold.value = -22;
+        this.compressor.knee.value = 20;
+        this.compressor.ratio.value = 12;
+        this.compressor.attack.value = 0.003;
+        this.compressor.release.value = 0.2;
+
+        this.limiter = ctx.createDynamicsCompressor();
+        this.limiter.threshold.value = -4;
+        this.limiter.knee.value = 0;
+        this.limiter.ratio.value = 20;
+        this.limiter.attack.value = 0.001;
+        this.limiter.release.value = 0.08;
 
         this.stereoPanner = ctx.createStereoPanner();
         this.stereoPanner.pan.value = 0;
@@ -341,6 +355,10 @@ class ProceduralAudioEngine {
         this.subOsc = ctx.createOscillator();
         this.subOsc.type = 'sine';
         this.subOsc.frequency.value = 34;
+
+        this.voidRumbleOsc = ctx.createOscillator();
+        this.voidRumbleOsc.type = 'sine';
+        this.voidRumbleOsc.frequency.value = 17;
 
         this.bodyOscA = ctx.createOscillator();
         this.bodyOscA.type = 'triangle';
@@ -384,6 +402,7 @@ class ProceduralAudioEngine {
         this.panDepth.gain.value = 0.11;
 
         this.subOsc.connect(this.subGain);
+        this.voidRumbleOsc.connect(this.voidRumbleGain);
         this.bodyOscA.connect(this.bodyGain);
         this.bodyOscB.connect(this.bodyGain);
         this.airOsc.connect(this.airGain);
@@ -391,6 +410,7 @@ class ProceduralAudioEngine {
         noiseFilter.connect(this.noiseGain);
 
         this.subGain.connect(this.coreGain);
+        this.voidRumbleGain.connect(this.coreGain);
         this.bodyGain.connect(this.coreGain);
         this.airGain.connect(this.coreGain);
         this.noiseGain.connect(this.coreGain);
@@ -407,7 +427,8 @@ class ProceduralAudioEngine {
         this.reverb.connect(this.reverbWetGain);
         this.reverbDryGain.connect(this.masterGain);
         this.reverbWetGain.connect(this.masterGain);
-        this.masterGain.connect(ctx.destination);
+        this.masterGain.connect(this.limiter);
+        this.limiter.connect(ctx.destination);
 
         this.tremoloOsc.connect(this.tremoloDepth);
         this.tremoloDepth.connect(this.coreGain.gain);
@@ -418,6 +439,7 @@ class ProceduralAudioEngine {
 
         const now = ctx.currentTime;
         this.subOsc.start(now);
+        this.voidRumbleOsc.start(now);
         this.bodyOscA.start(now);
         this.bodyOscB.start(now);
         this.airOsc.start(now);
@@ -431,17 +453,25 @@ class ProceduralAudioEngine {
             const profile = AUDIO_PROFILES[this.currentTechnique] || AUDIO_PROFILES.neutral;
             const time = this.context.currentTime;
             const isVoid = this.currentTechnique === 'void';
-            const detuneJitter = (Math.random() - 0.5) * (isVoid ? 22 : 7);
-            const bandJitter = profile.bandpass * (isVoid ? (0.68 + Math.random() * 0.5) : (0.88 + Math.random() * 0.24));
-            const lowpassJitter = profile.lowpass * (isVoid ? (0.62 + Math.random() * 0.48) : (0.9 + Math.random() * 0.2));
-            const wetJitter = profile.reverbWet * (isVoid ? (0.95 + Math.random() * 0.28) : (0.92 + Math.random() * 0.16));
-            const panJitter = isVoid ? (Math.random() - 0.5) * 0.22 : 0;
-            this.bodyOscB.detune.setTargetAtTime(profile.detune + detuneJitter, time, 0.7);
-            this.bandpassFilter.frequency.setTargetAtTime(Math.max(46, bandJitter), time, 0.85);
-            this.lowpassFilter.frequency.setTargetAtTime(Math.max(100, lowpassJitter), time, 1.0);
-            this.reverbWetGain.gain.setTargetAtTime(Math.max(0.12, wetJitter), time, 1.2);
+            const detuneJitter = (Math.random() - 0.5) * (isVoid ? 28 : 7);
+            const bandJitter = profile.bandpass * (isVoid ? (0.78 + Math.random() * 0.9) : (0.88 + Math.random() * 0.24));
+            const lowpassJitter = profile.lowpass * (isVoid ? (0.74 + Math.random() * 0.84) : (0.9 + Math.random() * 0.2));
+            const wetJitter = profile.reverbWet * (isVoid ? (0.98 + Math.random() * 0.45) : (0.92 + Math.random() * 0.16));
+            const panJitter = isVoid ? (Math.random() - 0.5) * 0.48 : 0;
+            this.bodyOscB.detune.setTargetAtTime(profile.detune + detuneJitter, time, isVoid ? 0.28 : 0.7);
+            this.bandpassFilter.frequency.setTargetAtTime(Math.max(44, bandJitter), time, isVoid ? 0.36 : 0.85);
+            this.lowpassFilter.frequency.setTargetAtTime(Math.max(90, lowpassJitter), time, isVoid ? 0.42 : 1.0);
+            this.reverbWetGain.gain.setTargetAtTime(Math.max(0.12, wetJitter), time, isVoid ? 0.52 : 1.2);
             if (isVoid) {
+                const shimmerJitter = profile.shimmerHz * (0.7 + Math.random() * 3.2);
+                const airJitter = profile.airFreq * (0.78 + Math.random() * 0.36);
+                const rumbleJitter = profile.subFreq * (0.44 + Math.random() * 0.36);
+                this.shimmerOsc.frequency.setTargetAtTime(Math.max(0.04, shimmerJitter), time, 0.42);
+                this.airOsc.frequency.setTargetAtTime(Math.max(110, airJitter), time, 0.45);
+                this.voidRumbleOsc.frequency.setTargetAtTime(Math.max(9, rumbleJitter), time, 0.38);
                 this.stereoPanner.pan.setTargetAtTime(panJitter, time, 0.9);
+            } else {
+                this.voidRumbleOsc.frequency.setTargetAtTime(Math.max(8, profile.subFreq * 0.35), time, 0.8);
             }
         }, 900);
 
@@ -455,22 +485,79 @@ class ProceduralAudioEngine {
         const ctx = this.context;
         const now = ctx.currentTime;
         const isVoid = this.currentTechnique === 'void';
-        const impactGain = profile.impactGain * (isVoid ? 1.32 : 1);
-        const boomSweepSeconds = isVoid ? 0.94 : 0.7;
-        const boomDecaySeconds = isVoid ? 1.08 : 0.78;
-        const boomStopSeconds = isVoid ? 1.14 : 0.82;
+        if (isVoid) {
+            const impactGain = profile.impactGain * 1.5;
+
+            const abyssOsc = ctx.createOscillator();
+            const abyssFilter = ctx.createBiquadFilter();
+            const abyssGain = ctx.createGain();
+            abyssOsc.type = 'triangle';
+            abyssOsc.frequency.setValueAtTime(Math.max(42, profile.subFreq * 2.9), now);
+            abyssOsc.frequency.exponentialRampToValueAtTime(Math.max(11, profile.subFreq * 0.42), now + 1.82);
+            abyssFilter.type = 'lowpass';
+            abyssFilter.frequency.value = Math.max(84, profile.lowpass * 0.86);
+            abyssFilter.Q.value = 1.18;
+            abyssGain.gain.setValueAtTime(0.0001, now);
+            abyssGain.gain.exponentialRampToValueAtTime(impactGain * 1.2, now + 0.018);
+            abyssGain.gain.exponentialRampToValueAtTime(0.0001, now + 2.15);
+            abyssOsc.connect(abyssFilter);
+            abyssFilter.connect(abyssGain);
+            abyssGain.connect(this.masterGain);
+            abyssOsc.start(now);
+            abyssOsc.stop(now + 2.22);
+
+            const crush = ctx.createBufferSource();
+            crush.buffer = createNoiseBuffer(ctx, 1.24);
+            const crushFilter = ctx.createBiquadFilter();
+            crushFilter.type = 'bandpass';
+            crushFilter.frequency.value = Math.max(72, profile.bandpass * 1.55);
+            crushFilter.Q.value = 1.46;
+            const crushGain = ctx.createGain();
+            crushGain.gain.setValueAtTime(0.0001, now);
+            crushGain.gain.exponentialRampToValueAtTime(impactGain * 0.74, now + 0.01);
+            crushGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.24);
+            crush.connect(crushFilter);
+            crushFilter.connect(crushGain);
+            crushGain.connect(this.reverb || this.masterGain);
+            crush.start(now);
+            crush.stop(now + 1.28);
+
+            const celestialOsc = ctx.createOscillator();
+            const celestialFilter = ctx.createBiquadFilter();
+            const celestialGain = ctx.createGain();
+            celestialOsc.type = 'square';
+            celestialOsc.frequency.setValueAtTime(Math.max(180, profile.airFreq * 1.7), now);
+            celestialOsc.frequency.exponentialRampToValueAtTime(Math.max(72, profile.airFreq * 0.6), now + 1.48);
+            celestialFilter.type = 'highpass';
+            celestialFilter.frequency.value = Math.max(180, profile.airFreq * 0.9);
+            celestialFilter.Q.value = 0.86;
+            celestialGain.gain.setValueAtTime(0.0001, now + 0.015);
+            celestialGain.gain.exponentialRampToValueAtTime(impactGain * 0.36, now + 0.08);
+            celestialGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.52);
+            celestialOsc.connect(celestialFilter);
+            celestialFilter.connect(celestialGain);
+            celestialGain.connect(this.reverb || this.masterGain);
+            celestialOsc.start(now);
+            celestialOsc.stop(now + 1.56);
+            return;
+        }
+
+        const impactGain = profile.impactGain;
+        const boomSweepSeconds = 0.7;
+        const boomDecaySeconds = 0.78;
+        const boomStopSeconds = 0.82;
 
         const boomOsc = ctx.createOscillator();
         const boomFilter = ctx.createBiquadFilter();
         const boomGain = ctx.createGain();
         boomOsc.type = 'triangle';
-        boomOsc.frequency.setValueAtTime(Math.max(30, profile.subFreq * (isVoid ? 3.0 : 2.4)), now);
-        boomOsc.frequency.exponentialRampToValueAtTime(Math.max(16, profile.subFreq * (isVoid ? 0.56 : 0.8)), now + boomSweepSeconds);
+        boomOsc.frequency.setValueAtTime(Math.max(30, profile.subFreq * 2.4), now);
+        boomOsc.frequency.exponentialRampToValueAtTime(Math.max(16, profile.subFreq * 0.8), now + boomSweepSeconds);
         boomFilter.type = 'lowpass';
-        boomFilter.frequency.value = Math.max(isVoid ? 88 : 130, profile.lowpass * (isVoid ? 0.95 : 1.25));
-        boomFilter.Q.value = isVoid ? 1.05 : 0.7;
+        boomFilter.frequency.value = Math.max(130, profile.lowpass * 1.25);
+        boomFilter.Q.value = 0.7;
         boomGain.gain.setValueAtTime(0.0001, now);
-        boomGain.gain.exponentialRampToValueAtTime(impactGain, now + (isVoid ? 0.018 : 0.03));
+        boomGain.gain.exponentialRampToValueAtTime(impactGain, now + 0.03);
         boomGain.gain.exponentialRampToValueAtTime(0.0001, now + boomDecaySeconds);
         boomOsc.connect(boomFilter);
         boomFilter.connect(boomGain);
@@ -479,35 +566,20 @@ class ProceduralAudioEngine {
         boomOsc.stop(now + boomStopSeconds);
 
         const burst = ctx.createBufferSource();
-        burst.buffer = createNoiseBuffer(ctx, isVoid ? 0.42 : 0.28);
+        burst.buffer = createNoiseBuffer(ctx, 0.28);
         const burstFilter = ctx.createBiquadFilter();
         burstFilter.type = 'bandpass';
-        burstFilter.frequency.value = Math.max(isVoid ? 60 : 90, profile.bandpass * (isVoid ? 1.35 : 1.7));
-        burstFilter.Q.value = isVoid ? 1.7 : 1.35;
+        burstFilter.frequency.value = Math.max(90, profile.bandpass * 1.7);
+        burstFilter.Q.value = 1.35;
         const burstGain = ctx.createGain();
         burstGain.gain.setValueAtTime(0.0001, now);
-        burstGain.gain.exponentialRampToValueAtTime(impactGain * (isVoid ? 0.74 : 0.42), now + (isVoid ? 0.009 : 0.012));
-        burstGain.gain.exponentialRampToValueAtTime(0.0001, now + (isVoid ? 0.44 : 0.28));
+        burstGain.gain.exponentialRampToValueAtTime(impactGain * 0.42, now + 0.012);
+        burstGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.28);
         burst.connect(burstFilter);
         burstFilter.connect(burstGain);
         burstGain.connect(this.reverb || this.masterGain);
         burst.start(now);
-        burst.stop(now + (isVoid ? 0.46 : 0.3));
-
-        if (isVoid) {
-            const tailOsc = ctx.createOscillator();
-            const tailGain = ctx.createGain();
-            tailOsc.type = 'sine';
-            tailOsc.frequency.setValueAtTime(Math.max(14, profile.subFreq * 0.45), now);
-            tailOsc.frequency.exponentialRampToValueAtTime(Math.max(10, profile.subFreq * 0.3), now + 1.6);
-            tailGain.gain.setValueAtTime(0.0001, now + 0.04);
-            tailGain.gain.exponentialRampToValueAtTime(impactGain * 0.3, now + 0.13);
-            tailGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.6);
-            tailOsc.connect(tailGain);
-            tailGain.connect(this.reverb || this.masterGain);
-            tailOsc.start(now);
-            tailOsc.stop(now + 1.7);
-        }
+        burst.stop(now + 0.3);
     }
 
     async unlock() {
@@ -527,11 +599,21 @@ class ProceduralAudioEngine {
         if (!this.ready || !this.context) return;
 
         const profile = AUDIO_PROFILES[technique] || AUDIO_PROFILES.neutral;
+        const isVoid = technique === 'void';
         const now = this.context.currentTime;
         const ramp = immediate ? 0.06 : 0.45;
 
+        // Give Infinite Void a heavier harmonic palette.
+        this.bodyOscA.type = isVoid ? 'sawtooth' : 'triangle';
+        this.bodyOscB.type = isVoid ? 'square' : 'sawtooth';
+        this.airOsc.type = isVoid ? 'triangle' : 'sawtooth';
+
         this.masterGain.gain.cancelScheduledValues(now);
+        this.subGain.gain.cancelScheduledValues(now);
+        this.bodyGain.gain.cancelScheduledValues(now);
+        this.voidRumbleGain.gain.cancelScheduledValues(now);
         this.subOsc.frequency.cancelScheduledValues(now);
+        this.voidRumbleOsc.frequency.cancelScheduledValues(now);
         this.bodyOscA.frequency.cancelScheduledValues(now);
         this.bodyOscB.frequency.cancelScheduledValues(now);
         this.bodyOscB.detune.cancelScheduledValues(now);
@@ -550,8 +632,17 @@ class ProceduralAudioEngine {
         this.panLfo.frequency.cancelScheduledValues(now);
         this.panDepth.gain.cancelScheduledValues(now);
 
+        const subMix = profile.subGain ?? 0.34;
+        const bodyMix = profile.bodyGain ?? 0.19;
+        const rumbleMix = isVoid ? 0.24 : 0.0001;
+        const rumbleFreq = isVoid ? Math.max(9, profile.subFreq * 0.56) : Math.max(8, profile.subFreq * 0.35);
+
         this.masterGain.gain.linearRampToValueAtTime(profile.master, now + ramp);
+        this.subGain.gain.linearRampToValueAtTime(subMix, now + ramp);
+        this.bodyGain.gain.linearRampToValueAtTime(bodyMix, now + ramp);
+        this.voidRumbleGain.gain.linearRampToValueAtTime(rumbleMix, now + ramp);
         this.subOsc.frequency.linearRampToValueAtTime(profile.subFreq, now + ramp);
+        this.voidRumbleOsc.frequency.linearRampToValueAtTime(rumbleFreq, now + ramp);
         this.bodyOscA.frequency.linearRampToValueAtTime(profile.bodyFreq, now + ramp);
         this.bodyOscB.frequency.linearRampToValueAtTime(profile.bodyFreq * 1.02, now + ramp);
         this.bodyOscB.detune.linearRampToValueAtTime(profile.detune, now + ramp);
