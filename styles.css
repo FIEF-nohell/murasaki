@@ -67,10 +67,12 @@ body {
     overflow: hidden;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.48), inset 0 0 0 1px rgba(225, 225, 225, 0.06);
     backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: background 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 #video-container::before {
-    content: "Live Camera";
+    content: "Camera + Skeleton";
     position: absolute;
     top: 10px;
     left: 12px;
@@ -88,6 +90,20 @@ body {
     border: 1px solid rgba(202, 202, 202, 0.16);
 }
 
+#video-container[data-camera-mode="skeleton"]::before {
+    content: "Skeleton Only";
+}
+
+#video-container[data-camera-mode="hidden"]::before {
+    content: "Camera Hidden";
+}
+
+#video-container[data-camera-mode="hidden"] {
+    background: rgba(8, 8, 8, 0.24);
+    border-color: rgba(202, 202, 202, 0.12);
+    box-shadow: inset 0 0 0 1px rgba(225, 225, 225, 0.04);
+}
+
 video {
     width: 100%;
     height: 100%;
@@ -95,6 +111,7 @@ video {
     opacity: 0.92;
     display: block;
     transform: scaleX(-1);
+    transition: opacity 160ms ease, visibility 160ms ease;
 }
 
 #output_canvas {
@@ -103,6 +120,7 @@ video {
     width: 100%;
     height: 100%;
     transform: scaleX(-1);
+    transition: opacity 160ms ease, visibility 160ms ease;
 }
 
 .webgl-bg {
