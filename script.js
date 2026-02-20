@@ -51,7 +51,7 @@ document.body.appendChild(renderer.domElement);
 
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.6, 0.75, 0.16);
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.8, 0.8, 0.14);
 composer.addPass(bloomPass);
 
 const RENDER_OVERSCAN_FACTOR = 1.16;
@@ -152,21 +152,21 @@ function getVoid(i) {
 }
 
 function getPurple(i) {
-    if (Math.random() > 0.8) return { x: (Math.random() - 0.5) * 100, y: (Math.random() - 0.5) * 100, z: (Math.random() - 0.5) * 100, r: 0.72, g: 0.38, b: 0.82, s: 0.8 };
+    if (Math.random() > 0.8) return { x: (Math.random() - 0.5) * 100, y: (Math.random() - 0.5) * 100, z: (Math.random() - 0.5) * 100, r: 0.36, g: 0.08, b: 0.62, s: 0.8 };
     const r = 20; const theta = Math.random() * Math.PI * 2; const phi = Math.acos(2 * Math.random() - 1);
-    return { x: r * Math.sin(phi) * Math.cos(theta), y: r * Math.sin(phi) * Math.sin(theta), z: r * Math.cos(phi), r: 1.0, g: 0.36, b: 0.78, s: 2.5 };
+    return { x: r * Math.sin(phi) * Math.cos(theta), y: r * Math.sin(phi) * Math.sin(theta), z: r * Math.cos(phi), r: 0.52, g: 0.12, b: 1.25, s: 2.5 };
 }
 
 function getShrine(i) {
     const total = COUNT;
-    if (i < total * 0.3) return { x: (Math.random() - 0.5) * 80, y: -15, z: (Math.random() - 0.5) * 80, r: 0.35, g: 0.22, b: 0.08, s: 0.8 };
+    if (i < total * 0.3) return { x: (Math.random() - 0.5) * 80, y: -15, z: (Math.random() - 0.5) * 80, r: 0.45, g: 0.06, b: 0.05, s: 0.8 };
     else if (i < total * 0.4) {
         const px = ((i % 4) < 2 ? 1 : -1) * 12; const pz = ((i % 4) % 2 == 0 ? 1 : -1) * 8;
-        return { x: px + (Math.random() - 0.5) * 2, y: -15 + Math.random() * 30, z: pz + (Math.random() - 0.5) * 2, r: 0.34, g: 0.27, b: 0.18, s: 0.6 };
+        return { x: px + (Math.random() - 0.5) * 2, y: -15 + Math.random() * 30, z: pz + (Math.random() - 0.5) * 2, r: 0.4, g: 0.08, b: 0.07, s: 0.6 };
     } else if (i < total * 0.6) {
         const t = Math.random() * Math.PI * 2; const rad = Math.random() * 30;
         const curve = Math.pow(rad / 30, 2) * 10;
-        return { x: rad * Math.cos(t), y: 15 - curve + (Math.random() * 2), z: rad * Math.sin(t) * 0.6, r: 0.88, g: 0.5, b: 0.18, s: 0.6 };
+        return { x: rad * Math.cos(t), y: 15 - curve + (Math.random() * 2), z: rad * Math.sin(t) * 0.6, r: 1.05, g: 0.18, b: 0.12, s: 0.6 };
     } else return { x: 0, y: 0, z: 0, r: 0, g: 0, b: 0, s: 0 };
 }
 
@@ -188,7 +188,7 @@ function getFlip(i) {
 const AUDIO_PROFILES = {
     neutral: { master: 0.006, subFreq: 33, bodyFreq: 58, lowpass: 130, bandpass: 66, noise: 0.0012, tremoloHz: 1.8, tremoloDepth: 0.006, drive: 0.9, detune: 1.8, shimmerHz: 0.05, lfoDepth: 10, airFreq: 96, airGain: 0.004, reverbWet: 0.08, reverbDry: 0.45, panHz: 0.02, panDepth: 0.04, impactGain: 0.03 },
     red: { master: 0.072, subFreq: 41, bodyFreq: 84, lowpass: 290, bandpass: 112, noise: 0.014, tremoloHz: 4.9, tremoloDepth: 0.036, drive: 1.48, detune: 7.2, shimmerHz: 0.2, lfoDepth: 52, airFreq: 168, airGain: 0.08, reverbWet: 0.3, reverbDry: 0.74, panHz: 0.07, panDepth: 0.16, impactGain: 0.2 },
-    void: { master: 0.074, subFreq: 29, bodyFreq: 50, lowpass: 210, bandpass: 74, noise: 0.028, tremoloHz: 1.8, tremoloDepth: 0.03, drive: 1.3, detune: 10, shimmerHz: 0.06, lfoDepth: 48, airFreq: 86, airGain: 0.06, reverbWet: 0.42, reverbDry: 0.65, panHz: 0.03, panDepth: 0.13, impactGain: 0.16 },
+    void: { master: 0.08, subFreq: 24, bodyFreq: 44, lowpass: 170, bandpass: 62, noise: 0.04, tremoloHz: 1.15, tremoloDepth: 0.042, drive: 1.86, detune: 20, shimmerHz: 0.035, lfoDepth: 72, airFreq: 68, airGain: 0.074, reverbWet: 0.54, reverbDry: 0.58, panHz: 0.038, panDepth: 0.17, impactGain: 0.22 },
     purple: { master: 0.09, subFreq: 46, bodyFreq: 97, lowpass: 400, bandpass: 150, noise: 0.018, tremoloHz: 6.4, tremoloDepth: 0.045, drive: 1.7, detune: 14.5, shimmerHz: 0.26, lfoDepth: 64, airFreq: 198, airGain: 0.11, reverbWet: 0.38, reverbDry: 0.68, panHz: 0.11, panDepth: 0.22, impactGain: 0.23 },
     shrine: { master: 0.084, subFreq: 38, bodyFreq: 73, lowpass: 320, bandpass: 132, noise: 0.013, tremoloHz: 3.2, tremoloDepth: 0.032, drive: 1.58, detune: 5.8, shimmerHz: 0.13, lfoDepth: 56, airFreq: 152, airGain: 0.09, reverbWet: 0.34, reverbDry: 0.72, panHz: 0.065, panDepth: 0.18, impactGain: 0.19 },
     flip: { master: 0.096, subFreq: 36, bodyFreq: 90, lowpass: 360, bandpass: 162, noise: 0.022, tremoloHz: 8.6, tremoloDepth: 0.056, drive: 1.82, detune: 16, shimmerHz: 0.33, lfoDepth: 68, airFreq: 208, airGain: 0.12, reverbWet: 0.32, reverbDry: 0.7, panHz: 0.14, panDepth: 0.24, impactGain: 0.24 }
@@ -430,14 +430,19 @@ class ProceduralAudioEngine {
             if (!this.ready || !this.isEnabled) return;
             const profile = AUDIO_PROFILES[this.currentTechnique] || AUDIO_PROFILES.neutral;
             const time = this.context.currentTime;
-            const detuneJitter = (Math.random() - 0.5) * 7;
-            const bandJitter = profile.bandpass * (0.88 + Math.random() * 0.24);
-            const lowpassJitter = profile.lowpass * (0.9 + Math.random() * 0.2);
-            const wetJitter = profile.reverbWet * (0.92 + Math.random() * 0.16);
+            const isVoid = this.currentTechnique === 'void';
+            const detuneJitter = (Math.random() - 0.5) * (isVoid ? 22 : 7);
+            const bandJitter = profile.bandpass * (isVoid ? (0.68 + Math.random() * 0.5) : (0.88 + Math.random() * 0.24));
+            const lowpassJitter = profile.lowpass * (isVoid ? (0.62 + Math.random() * 0.48) : (0.9 + Math.random() * 0.2));
+            const wetJitter = profile.reverbWet * (isVoid ? (0.95 + Math.random() * 0.28) : (0.92 + Math.random() * 0.16));
+            const panJitter = isVoid ? (Math.random() - 0.5) * 0.22 : 0;
             this.bodyOscB.detune.setTargetAtTime(profile.detune + detuneJitter, time, 0.7);
             this.bandpassFilter.frequency.setTargetAtTime(Math.max(46, bandJitter), time, 0.85);
             this.lowpassFilter.frequency.setTargetAtTime(Math.max(100, lowpassJitter), time, 1.0);
             this.reverbWetGain.gain.setTargetAtTime(Math.max(0.12, wetJitter), time, 1.2);
+            if (isVoid) {
+                this.stereoPanner.pan.setTargetAtTime(panJitter, time, 0.9);
+            }
         }, 900);
 
         this.ready = true;
@@ -449,40 +454,60 @@ class ProceduralAudioEngine {
 
         const ctx = this.context;
         const now = ctx.currentTime;
+        const isVoid = this.currentTechnique === 'void';
+        const impactGain = profile.impactGain * (isVoid ? 1.32 : 1);
+        const boomSweepSeconds = isVoid ? 0.94 : 0.7;
+        const boomDecaySeconds = isVoid ? 1.08 : 0.78;
+        const boomStopSeconds = isVoid ? 1.14 : 0.82;
 
         const boomOsc = ctx.createOscillator();
         const boomFilter = ctx.createBiquadFilter();
         const boomGain = ctx.createGain();
         boomOsc.type = 'triangle';
-        boomOsc.frequency.setValueAtTime(Math.max(35, profile.subFreq * 2.4), now);
-        boomOsc.frequency.exponentialRampToValueAtTime(Math.max(22, profile.subFreq * 0.8), now + 0.7);
+        boomOsc.frequency.setValueAtTime(Math.max(30, profile.subFreq * (isVoid ? 3.0 : 2.4)), now);
+        boomOsc.frequency.exponentialRampToValueAtTime(Math.max(16, profile.subFreq * (isVoid ? 0.56 : 0.8)), now + boomSweepSeconds);
         boomFilter.type = 'lowpass';
-        boomFilter.frequency.value = Math.max(130, profile.lowpass * 1.25);
-        boomFilter.Q.value = 0.7;
+        boomFilter.frequency.value = Math.max(isVoid ? 88 : 130, profile.lowpass * (isVoid ? 0.95 : 1.25));
+        boomFilter.Q.value = isVoid ? 1.05 : 0.7;
         boomGain.gain.setValueAtTime(0.0001, now);
-        boomGain.gain.exponentialRampToValueAtTime(profile.impactGain, now + 0.03);
-        boomGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.78);
+        boomGain.gain.exponentialRampToValueAtTime(impactGain, now + (isVoid ? 0.018 : 0.03));
+        boomGain.gain.exponentialRampToValueAtTime(0.0001, now + boomDecaySeconds);
         boomOsc.connect(boomFilter);
         boomFilter.connect(boomGain);
         boomGain.connect(this.masterGain);
         boomOsc.start(now);
-        boomOsc.stop(now + 0.82);
+        boomOsc.stop(now + boomStopSeconds);
 
         const burst = ctx.createBufferSource();
-        burst.buffer = createNoiseBuffer(ctx, 0.28);
+        burst.buffer = createNoiseBuffer(ctx, isVoid ? 0.42 : 0.28);
         const burstFilter = ctx.createBiquadFilter();
         burstFilter.type = 'bandpass';
-        burstFilter.frequency.value = Math.max(90, profile.bandpass * 1.7);
-        burstFilter.Q.value = 1.35;
+        burstFilter.frequency.value = Math.max(isVoid ? 60 : 90, profile.bandpass * (isVoid ? 1.35 : 1.7));
+        burstFilter.Q.value = isVoid ? 1.7 : 1.35;
         const burstGain = ctx.createGain();
         burstGain.gain.setValueAtTime(0.0001, now);
-        burstGain.gain.exponentialRampToValueAtTime(profile.impactGain * 0.42, now + 0.012);
-        burstGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.28);
+        burstGain.gain.exponentialRampToValueAtTime(impactGain * (isVoid ? 0.74 : 0.42), now + (isVoid ? 0.009 : 0.012));
+        burstGain.gain.exponentialRampToValueAtTime(0.0001, now + (isVoid ? 0.44 : 0.28));
         burst.connect(burstFilter);
         burstFilter.connect(burstGain);
         burstGain.connect(this.reverb || this.masterGain);
         burst.start(now);
-        burst.stop(now + 0.3);
+        burst.stop(now + (isVoid ? 0.46 : 0.3));
+
+        if (isVoid) {
+            const tailOsc = ctx.createOscillator();
+            const tailGain = ctx.createGain();
+            tailOsc.type = 'sine';
+            tailOsc.frequency.setValueAtTime(Math.max(14, profile.subFreq * 0.45), now);
+            tailOsc.frequency.exponentialRampToValueAtTime(Math.max(10, profile.subFreq * 0.3), now + 1.6);
+            tailGain.gain.setValueAtTime(0.0001, now + 0.04);
+            tailGain.gain.exponentialRampToValueAtTime(impactGain * 0.3, now + 0.13);
+            tailGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.6);
+            tailOsc.connect(tailGain);
+            tailGain.connect(this.reverb || this.masterGain);
+            tailOsc.start(now);
+            tailOsc.stop(now + 1.7);
+        }
     }
 
     async unlock() {
@@ -649,12 +674,12 @@ function updateState(tech) {
     const nameEl = document.getElementById('technique-name');
     shakeIntensity = tech !== 'neutral' ? 0.28 : 0;
 
-    if (tech === 'shrine') { glowColor = '#ff9a3d'; nameEl.innerText = "Domain Expansion - Malevolent Shrine"; bloomPass.strength = 2.2; }
-    else if (tech === 'purple') { glowColor = '#ff4fcf'; nameEl.innerText = "Secret Technique - Hollow Purple"; bloomPass.strength = 2.8; }
-    else if (tech === 'flip') { glowColor = '#d3ff70'; nameEl.innerText = "Fuck You"; bloomPass.strength = 2.4; }
-    else if (tech === 'void') { glowColor = '#72ffd7'; nameEl.innerText = "Domain Expansion - Infinite Void"; bloomPass.strength = 1.9; }
-    else if (tech === 'red') { glowColor = '#ffb347'; nameEl.innerText = "Reverse Cursed Technique - Red"; bloomPass.strength = 2.1; }
-    else { glowColor = '#8de7cf'; nameEl.innerText = "Awaiting Hand Gesture"; bloomPass.strength = 1.4; }
+    if (tech === 'shrine') { glowColor = '#ff3f3f'; nameEl.innerText = "Domain Expansion - Malevolent Shrine"; bloomPass.strength = 2.5; }
+    else if (tech === 'purple') { glowColor = '#7b2bff'; nameEl.innerText = "Secret Technique - Hollow Purple"; bloomPass.strength = 3.2; }
+    else if (tech === 'flip') { glowColor = '#d3ff70'; nameEl.innerText = "Fuck You"; bloomPass.strength = 2.6; }
+    else if (tech === 'void') { glowColor = '#72ffd7'; nameEl.innerText = "Domain Expansion - Infinite Void"; bloomPass.strength = 2.1; }
+    else if (tech === 'red') { glowColor = '#ffb347'; nameEl.innerText = "Reverse Cursed Technique - Red"; bloomPass.strength = 2.3; }
+    else { glowColor = '#8de7cf'; nameEl.innerText = "Awaiting Hand Gesture"; bloomPass.strength = 1.6; }
     audioEngine.setTechnique(tech);
 
     for (let i = 0; i < COUNT; i++) {
