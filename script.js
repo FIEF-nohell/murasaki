@@ -563,7 +563,7 @@ const uiHintElement = document.getElementById('ui-hint');
 const audioEngine = new ProceduralAudioEngine(uiHintElement);
 
 const CAMERA_VIEW_SEQUENCE = ['camera', 'skeleton', 'hidden'];
-let cameraViewIndex = 0;
+let cameraViewIndex = 1;
 let cameraViewMode = CAMERA_VIEW_SEQUENCE[cameraViewIndex];
 
 function applyCameraViewMode() {
