@@ -11,12 +11,14 @@ camera.position.z = 56;
 const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.15;
 renderer.domElement.classList.add('webgl-bg');
 document.body.appendChild(renderer.domElement);
 
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 2.2, 0.9, 0.08);
 composer.addPass(bloomPass);
 
 const COUNT = 20000;
@@ -33,7 +35,38 @@ geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 geometry.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
 
-const particles = new THREE.Points(geometry, new THREE.PointsMaterial({ size: 0.3, vertexColors: true, blending: THREE.AdditiveBlending, transparent: true, depthWrite: false }));
+function createParticleSprite() {
+    const size = 128;
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    const gradient = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+    gradient.addColorStop(0.0, 'rgba(255,255,255,1)');
+    gradient.addColorStop(0.2, 'rgba(255,255,255,0.95)');
+    gradient.addColorStop(0.45, 'rgba(255,255,255,0.5)');
+    gradient.addColorStop(1.0, 'rgba(255,255,255,0)');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, size, size);
+
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
+}
+
+const particleSprite = createParticleSprite();
+const particleMaterial = new THREE.PointsMaterial({
+    size: 0.55,
+    sizeAttenuation: true,
+    vertexColors: true,
+    map: particleSprite,
+    alphaMap: particleSprite,
+    transparent: true,
+    opacity: 0.9,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false
+});
+const particles = new THREE.Points(geometry, particleMaterial);
 scene.add(particles);
 
 // Technique Functions
@@ -119,11 +152,11 @@ function updateState(tech) {
     const nameEl = document.getElementById('technique-name');
     shakeIntensity = tech !== 'neutral' ? 0.4 : 0;
 
-    if (tech === 'shrine') { glowColor = '#ff0000'; nameEl.innerText = "Domain Expansion - Malevolent Shrine"; bloomPass.strength = 2.5; }
-    else if (tech === 'purple') { glowColor = '#bb00ff'; nameEl.innerText = "Secret Technique - Hollow Purple"; bloomPass.strength = 4.0; }
-    else if (tech === 'void') { glowColor = '#00ffff'; nameEl.innerText = "Domain Expansion - Infinite Void"; bloomPass.strength = 2.0; }
-    else if (tech === 'red') { glowColor = '#ff3333'; nameEl.innerText = "Reverse Cursed Technique - Red"; bloomPass.strength = 2.5; }
-    else { glowColor = '#00ffff'; nameEl.innerText = "Awaiting Hand Gesture"; bloomPass.strength = 1.0; }
+    if (tech === 'shrine') { glowColor = '#ff0000'; nameEl.innerText = "Domain Expansion - Malevolent Shrine"; bloomPass.strength = 2.8; }
+    else if (tech === 'purple') { glowColor = '#bb00ff'; nameEl.innerText = "Secret Technique - Hollow Purple"; bloomPass.strength = 3.6; }
+    else if (tech === 'void') { glowColor = '#00ffff'; nameEl.innerText = "Domain Expansion - Infinite Void"; bloomPass.strength = 2.4; }
+    else if (tech === 'red') { glowColor = '#ff3333'; nameEl.innerText = "Reverse Cursed Technique - Red"; bloomPass.strength = 2.9; }
+    else { glowColor = '#00ffff'; nameEl.innerText = "Awaiting Hand Gesture"; bloomPass.strength = 1.8; }
 
     for (let i = 0; i < COUNT; i++) {
         let p;
@@ -204,6 +237,7 @@ function handleResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     composer.setSize(window.innerWidth, window.innerHeight);
+    bloomPass.setSize(window.innerWidth, window.innerHeight);
 }
 
 handleResize();
