@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+<title id="title">Murasaki preview</title>
+<desc id="desc">Gesture-controlled particle and procedural audio experience.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+<stop offset="0%" stop-color="#1a1b1f"/>
+<stop offset="100%" stop-color="#070708"/>
+</linearGradient>
+<radialGradient id="glow" cx="50%" cy="42%" r="55%">
+<stop offset="0%" stop-color="#f6f6f6" stop-opacity="0.28"/>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+</radialGradient>
+</defs>
+<rect width="1200" height="630" fill="url(#bg)"/>
+<rect width="1200" height="630" fill="url(#glow)"/>
+<g fill="none" stroke="#d9d9d9" stroke-opacity="0.45">
+<circle cx="600" cy="315" r="140"/>
+<circle cx="600" cy="315" r="220" stroke-opacity="0.25"/>
+<circle cx="600" cy="315" r="290" stroke-opacity="0.14"/>
+</g>
+<text x="600" y="280" text-anchor="middle" fill="none" stroke="#ededed" stroke-opacity="0.7" stroke-width="1.3" font-size="96" font-family="'Space Grotesk', 'Segoe UI', sans-serif" letter-spacing="9">MURASAKI</text>
+<text x="600" y="355" text-anchor="middle" fill="none" stroke="#d8d8d8" stroke-opacity="0.5" stroke-width="1" font-size="34" font-family="'Space Grotesk', 'Segoe UI', sans-serif" letter-spacing="3">GESTURE CONTROLLED PARTICLE RITUAL</text>
+<text x="600" y="410" text-anchor="middle" fill="none" stroke="#c8c8c8" stroke-opacity="0.38" stroke-width="0.9" font-size="22" font-family="'Space Grotesk', 'Segoe UI', sans-serif" letter-spacing="2">REAL-TIME VISUALS + PROCEDURAL VIBRATION AUDIO</text>
+<text x="1138" y="592" text-anchor="end" fill="none" stroke="#cecece" stroke-opacity="0.45" stroke-width="0.8" font-size="18" font-family="'Space Grotesk', 'Segoe UI', sans-serif" letter-spacing="1">signature: nohell</text>
+</svg>
